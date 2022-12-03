@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Buy Luck</string> 
+  <string name="facebook_app_id">2842418079353811</string>
+  <string name="fb_login_protocol_scheme">fb2842418079353811</string>
+
+  <string name="default_notification_channel_id">buy_luck_notification</string>
+
+</resources>

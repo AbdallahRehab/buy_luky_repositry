@@ -1,0 +1,10 @@
+linter:
+  rules:
+#    - parameter_assignments
+    - close_sinks
+
+analyzer:
+  errors:
+    missing_required_param: error
+    close_sinks: error
+#    parameter_assignments: info
