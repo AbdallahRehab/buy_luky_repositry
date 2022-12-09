@@ -16,5 +16,5 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 
-alis = buyluck
-password = buyluck123456
+buyluck
+buyluck123456
