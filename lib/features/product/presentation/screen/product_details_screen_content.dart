@@ -138,16 +138,16 @@ class _ProductDetailsContentState extends State<ProductDetailsContent> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('الزمن المتبقي علي السحب',style: TextStyle(color: Colors.orange[800], fontSize: 18,fontWeight: FontWeight.bold)),
-
-                    Directionality(
+                    Text('الزمن المتبقي علي السحب',style: TextStyle(color: Colors.orange[800], fontSize: 13,fontWeight: FontWeight.bold)),
+                    SizedBox(width: 8),
+                    Expanded(child: Directionality(
                       textDirection: TextDirection.ltr,
                       child: SlideCountdownSeparated(
                         duration:
                         widget.productEntity.time?.difference(
                           DateTime.now(),
                         ) ??
-                            Duration(seconds: 5),
+                        Duration(seconds: 5),
 
                         height: 120.h,
                         width: 100.w,
@@ -167,7 +167,8 @@ class _ProductDetailsContentState extends State<ProductDetailsContent> {
                           });
                         },
                       ),
-                    ),
+                    ),),
+
 
                   ],
                 ),
