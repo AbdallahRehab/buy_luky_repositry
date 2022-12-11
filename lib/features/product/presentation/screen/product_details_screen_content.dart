@@ -52,7 +52,7 @@ class _ProductDetailsContentState extends State<ProductDetailsContent> {
   int _initCoupons = 0;
 
   late ConfettiController _controllerTopCenter;
-  bool isBull=false;
+  bool isBull = false;
 
   @override
   void initState() {
@@ -72,8 +72,9 @@ class _ProductDetailsContentState extends State<ProductDetailsContent> {
 
     _controllerTopCenter = ConfettiController();
 
-    if(widget.productEntity.time != null && widget.productEntity.time!.isBefore(DateTime.now()) && widget.productEntity.user_winner != null)
-      _controllerTopCenter.play();
+    if (widget.productEntity.time != null &&
+        widget.productEntity.time!.isBefore(DateTime.now()) &&
+        widget.productEntity.user_winner != null) _controllerTopCenter.play();
 
     super.initState();
   }
@@ -103,12 +104,12 @@ class _ProductDetailsContentState extends State<ProductDetailsContent> {
             image: API_BASE_IMG + (widget.productEntity.image ?? ''),
             id: widget.productEntity.id,
             productStatus: widget.productEntity.productStatus,
-            color: isBull?Colors.grey.shade400:Colors.white,
+            color: isBull ? Colors.grey.shade400 : Colors.white,
           ),
         ),
         SliverToBoxAdapter(
           child: Container(
-            color: isBull?Colors.grey.shade400:Colors.white,
+            color: isBull ? Colors.grey.shade400 : Colors.white,
             child: ListView(
               padding: EdgeInsets.symmetric(
                 horizontal: CommonSizes.MED_LAYOUT_W_GAP.toDouble(),
@@ -135,56 +136,61 @@ class _ProductDetailsContentState extends State<ProductDetailsContent> {
                   //
                   // ),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('الزمن المتبقي علي السحب',style: TextStyle(color: Colors.orange[800], fontSize: 13,fontWeight: FontWeight.bold)),
-                    SizedBox(width: 8),
-                    Expanded(child: Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: SlideCountdownSeparated(
-                        duration:
-                        widget.productEntity.time?.difference(
-                          DateTime.now(),
-                        ) ??
-                        Duration(seconds: 5),
-
-                        height: 120.h,
-                        width: 100.w,
-                        separatorStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 50.sp),
-                        textStyle: TextStyle(fontWeight: FontWeight.bold,fontSize: 50.sp,color: Colors.white),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(8)),
-                          color: Colors.deepOrangeAccent,
-                        ),
-                        onDone: (){
-                          print("Timer finished");
-                          _controllerTopCenter.play();
-
-                          setState(() {
-
-                            isBull=true;
-                          });
-                        },
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text('الزمن المتبقي علي السحب',
+                            style: TextStyle(
+                                color: Colors.orange[800],
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold)),
                       ),
-                    ),),
+                      // SizedBox(width: 8),
+                      Expanded(
+                        child: Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: SlideCountdownSeparated(
+                            duration:
+                            widget.productEntity.time?.difference(
+                                  DateTime.now(),
+                                ) ??
+                                Duration(seconds:   5),
+                            height: 120.h,
+                            // width: 100.w,
+                            separatorStyle: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 50.sp),
+                            textStyle: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 50.sp,
+                                color: Colors.white),
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8)),
+                              color: Colors.deepOrangeAccent,
+                            ),
+                            onDone: () {
+                              print("Timer finished");
+                              _controllerTopCenter.play();
 
-
-                  ],
-                ),
+                              setState(() {
+                                isBull = true;
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 const SizedBox(
                   height: 15,
                 ),
-
-
-
 
                 const SizedBox(
                   height: 15,
                 ),
                 Center(
-                  child:
-                  Align(
+                  child: Align(
                     alignment: Alignment.centerRight,
                     child: ConfettiWidget(
                       confettiController: _controllerTopCenter,
@@ -201,28 +207,29 @@ class _ProductDetailsContentState extends State<ProductDetailsContent> {
                   ),
                 ),
 
-                isBull?Container(
-                  height: 220,
-                  width: 95.w,
-                    decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.8),
-                        borderRadius: BorderRadius.circular(25)),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20,horizontal: 2),
-                    child: ExamplePage(),
-                  )
-                ):SizedBox(),
+                isBull
+                    ? Container(
+                        height: 220,
+                        width: 95.w,
+                        decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.8),
+                            borderRadius: BorderRadius.circular(25)),
+                        child: Padding(
+                          padding:
+                              EdgeInsets.symmetric(vertical: 20, horizontal: 2),
+                          child: ExamplePage(),
+                        ))
+                    : SizedBox(),
 
-                if(widget.productEntity.time != null && widget.productEntity.time!.isBefore(DateTime.now()))
-
+                if (widget.productEntity.time != null &&
+                    widget.productEntity.time!.isBefore(DateTime.now()))
                   Column(
                     children: [
                       const SizedBox(
                         height: 15,
                       ),
                       Center(
-                        child:
-                        Align(
+                        child: Align(
                           alignment: Alignment.centerRight,
                           child: ConfettiWidget(
                             confettiController: _controllerTopCenter,
@@ -240,11 +247,10 @@ class _ProductDetailsContentState extends State<ProductDetailsContent> {
                       ),
 
                       // Text("مبروك  ${widget.productEntity.user_winner !=null ?widget.productEntity.user_winner!.name: ""} قسيمتك رقم${widget.productEntity.code_winner ??""} ربحت سوف يتم التواصل معك قريبا",style: TextStyle(color: Colors.red,fontSize: 20),),
-
                     ],
                   )
-
-                else SizedBox(),
+                else
+                  SizedBox(),
 
                 const SizedBox(
                   height: 10,
@@ -444,7 +450,7 @@ class _ProductDetailsContentState extends State<ProductDetailsContent> {
                     height: 15,
                   ),
                   Html(
-                    data: widget.productEntity.descriptionWinner??"",
+                    data: widget.productEntity.descriptionWinner ?? "",
                   ),
                 ],
                 const SizedBox(
@@ -503,12 +509,9 @@ class _ProductDetailsContentState extends State<ProductDetailsContent> {
                   height: 15,
                 ),
 
-
-
                 const SizedBox(
                   height: 100,
                 ),
-
               ],
             ),
           ),
@@ -530,17 +533,20 @@ class _ProductDetailsContentState extends State<ProductDetailsContent> {
           height: 80.h,
           child: ElevatedButton(
             onPressed: () {
-
-              if(_buyedCoupuns < 10){
+              if (_buyedCoupuns < 10) {
                 setState(() {
                   _buyedCoupuns++;
                   _buyedCoupuns > availableCoupons
                       ? _buyedCoupuns = availableCoupons
                       : 0;
                 });
-              }else{
+              } else {
                 print('10');
-                Toast.show("الحد الاقصي لعملية الشراء 10 كوبونات في العملية الواحدة",backgroundColor: Colors.black,textColor: Colors.white,fontSize: 35.sp);
+                Toast.show(
+                    "الحد الاقصي لعملية الشراء 10 كوبونات في العملية الواحدة",
+                    backgroundColor: Colors.black,
+                    textColor: Colors.white,
+                    fontSize: 35.sp);
               }
             },
             child: Text(
@@ -668,15 +674,21 @@ class CustomSliverDelegate extends SliverPersistentHeaderDelegate {
               decoration: BoxDecoration(
                 // shape: BoxShape.circle,
                 color: Colors.deepOrangeAccent,
-                  borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(15),
               ),
               child: Center(
                 child: Padding(
                   padding: EdgeInsets.all(8),
                   child: AutoSizeText(
-                    this.price + ' ' + currency +'\n'+"بما يعادلة من العملة المحلية",
+                    this.price +
+                        ' ' +
+                        currency +
+                        '\n' +
+                        "بما يعادلة من العملة المحلية",
                     style: TextStyle(
-                        color: Colors.white, fontSize: 12,fontWeight: FontWeight.bold ),
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                     // maxLines: 2,
                   ),
